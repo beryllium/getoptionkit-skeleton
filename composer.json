@@ -1,0 +1,14 @@
+{
+    "name": "beryllium/getoptionkit-skeleton",
+    "description": "A quick start package for creating CLI scripts using GetOptionKit",
+    "require": {
+        "c9s/getoptionkit": "dev-master"
+    },
+    "authors": [
+        {
+            "name": "Kevin Boyd",
+            "email": "kevin.boyd@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}

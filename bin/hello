@@ -1,0 +1,32 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../bootstrap.php';
+
+$app = new GetOptionKit\GetOptionKit();
+$app->add( 'h|help', 'Display usage instructions' ); // The '|' allows you to define a short and a long form: -h and --help, in this case
+$app->add( 'g|greeting:', 'Greeting (default: "Hello")' ); // The ':' means "value required", so the user can't just specify "-g" on its own.
+
+$options = $app->parse( $argv );
+$arguments = $options->getArguments();
+array_shift($arguments); //Strip off the command name
+
+if ( $options->has( 'help' ) || count( $arguments ) != 1 )
+{
+  writeln( 'Usage: hello [-g "Greetings"] yourname' );
+  writeln();
+  $app->printOptions();
+  writeln();
+  exit(0);
+}
+
+//Set the default greeting
+$greeting = 'Hello';
+
+//Check for the optional override
+if ( $options->has('greeting') )
+{
+  $greeting = $options['greeting']->value;
+}
+
+writeln( $greeting . ', ' . $arguments[0] . '!' );
