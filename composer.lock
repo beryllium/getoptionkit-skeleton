@@ -1,9 +1,9 @@
 {
-    "hash": "1e0198142ef2d6d89c55d35d2b25802f",
+    "hash": "ebc48dbbb3e754eb09ad2f0b90daf7c0",
     "packages": [
         {
             "name": "c9s/GetOptionKit",
-            "version": "dev-master",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/c9s/php-GetOptionKit.git",
@@ -47,8 +47,8 @@
     "aliases": [
 
     ],
-    "minimum-stability": "dev",
-    "stability-flags": {
-        "c9s/getoptionkit": 20
-    }
+    "minimum-stability": "stable",
+    "stability-flags": [
+
+    ]
 }
