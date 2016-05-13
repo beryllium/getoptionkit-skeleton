@@ -3,7 +3,7 @@
     "description": "A quick start package for creating CLI scripts using GetOptionKit",
     "license": "MIT",
     "require": {
-        "c9s/getoptionkit": "1.*"
+        "c9s/getoptionkit": "^2"
     },
     "authors": [
         {
