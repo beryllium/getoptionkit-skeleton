@@ -1,30 +1,37 @@
 {
-    "hash": "ebc48dbbb3e754eb09ad2f0b90daf7c0",
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "b357435c81b631e9483369f8405c98d6",
+    "content-hash": "8a73df546d86c26de3e2420c75749555",
     "packages": [
         {
             "name": "c9s/GetOptionKit",
-            "version": "1.2.3",
+            "version": "2.2.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/c9s/php-GetOptionKit.git",
-                "reference": "1.2.3"
+                "url": "https://github.com/c9s/GetOptionKit.git",
+                "reference": "c7170525314b587019c0b2a7b0354432b64b48e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/c9s/php-GetOptionKit/zipball/1.2.3",
-                "reference": "1.2.3",
+                "url": "https://api.github.com/repos/c9s/GetOptionKit/zipball/c7170525314b587019c0b2a7b0354432b64b48e0",
+                "reference": "c7170525314b587019c0b2a7b0354432b64b48e0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "corneltek/phpunit-testmore": "dev-master"
+                "corneltek/phpunit-testmore": "dev-master",
+                "satooshi/php-coveralls": "dev-master"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "GetOptionKit": "src"
+                "psr-4": {
+                    "GetOptionKit\\": "src/GetOptionKit/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -40,15 +47,16 @@
             ],
             "description": "Powerful command-line option toolkit",
             "homepage": "http://github.com/c9s/GetOptionKit",
-            "time": "2013-03-28 03:07:51"
+            "abandoned": "corneltek/getoptionkit",
+            "time": "2015-10-02 07:53:43"
         }
     ],
-    "packages-dev": null,
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ]
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
 }

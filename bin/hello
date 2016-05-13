@@ -4,31 +4,43 @@
 require_once __DIR__ . '/../bootstrap.php';
 
 $options = new GetOptionKit\OptionCollection();
-$options->add( 'h|help', 'Display usage instructions' ); // The '|' allows you to define a short and a long form: -h and --help, in this case
-$options->add( 'g|greeting:', 'Greeting (default: "Hello")' ); // The ':' means "value required", so the user can't just specify "-g" on its own.
 
-$parser = new GetOptionKit\OptionParser();
-$result = $parser->parse( $argv );
+// Add a help option
+// the '|' symbol allows you to define a short and long form
+// In this case, -h and --help
+$options->add('h|help', 'Display usage instructions');
+
+// Add a greeting option (default is "Hello")
+// The ':' symbol tells GetOptionKit that the value is required if present,
+// so if the user specifies "-g" or "--greeting", they MUST provide a value
+// (Otherwise, the default is used)
+$options->add('g|greeting:', 'Greeting (default: "Hello")'); // The ':' means "value required", so the user can't just specify "-g" on its own.
+
+$parser    = new GetOptionKit\OptionParser($options);
+$result    = $parser->parse($argv);
 $arguments = $result->getArguments();
 
-if ($result->has( 'help' ) || count( $arguments ) != 1 )
-{
-  writeln( 'Usage: hello [-g "Greetings"] yourname' );
-  writeln();
+// remove the script's own name from the list of arguments
+array_shift($arguments);
 
-  $printer = new GetOptionKit\OptionPrinter\ConsoleOptionPrinter;
-  echo $printer->render($options);
-  writeln();
-  exit(0);
+// If the user has requested help, display usage information and exit
+if ($result->has('help') || count($arguments) != 1) {
+    writeln('Usage: hello [-h] [-g "Greetings"] yourname');
+    writeln();
+
+    $printer = new GetOptionKit\OptionPrinter\ConsoleOptionPrinter;
+    echo $printer->render($options);
+    writeln();
+    exit(0);
 }
 
 //Set the default greeting
 $greeting = 'Hello';
 
 //Check for the optional override
-if ( $result->has('greeting') )
-{
+if ($result->has('greeting')) {
   $greeting = $result['greeting']->value;
 }
 
-writeln( $greeting . ', ' . $arguments[0] . '!' );
+// Display the greeting alongside the name argument, and then exit
+writeln($greeting . ', ' . $arguments[0] . '!');
