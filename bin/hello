@@ -3,19 +3,21 @@
 
 require_once __DIR__ . '/../bootstrap.php';
 
-$app = new GetOptionKit\GetOptionKit();
-$app->add( 'h|help', 'Display usage instructions' ); // The '|' allows you to define a short and a long form: -h and --help, in this case
-$app->add( 'g|greeting:', 'Greeting (default: "Hello")' ); // The ':' means "value required", so the user can't just specify "-g" on its own.
+$options = new GetOptionKit\OptionCollection();
+$options->add( 'h|help', 'Display usage instructions' ); // The '|' allows you to define a short and a long form: -h and --help, in this case
+$options->add( 'g|greeting:', 'Greeting (default: "Hello")' ); // The ':' means "value required", so the user can't just specify "-g" on its own.
 
-$options = $app->parse( $argv );
-$arguments = $options->getArguments();
-array_shift($arguments); //Strip off the command name
+$parser = new GetOptionKit\OptionParser();
+$result = $parser->parse( $argv );
+$arguments = $result->getArguments();
 
-if ( $options->has( 'help' ) || count( $arguments ) != 1 )
+if ($result->has( 'help' ) || count( $arguments ) != 1 )
 {
   writeln( 'Usage: hello [-g "Greetings"] yourname' );
   writeln();
-  $app->printOptions();
+
+  $printer = new GetOptionKit\OptionPrinter\ConsoleOptionPrinter;
+  echo $printer->render($options);
   writeln();
   exit(0);
 }
@@ -24,9 +26,9 @@ if ( $options->has( 'help' ) || count( $arguments ) != 1 )
 $greeting = 'Hello';
 
 //Check for the optional override
-if ( $options->has('greeting') )
+if ( $result->has('greeting') )
 {
-  $greeting = $options['greeting']->value;
+  $greeting = $result['greeting']->value;
 }
 
 writeln( $greeting . ', ' . $arguments[0] . '!' );
